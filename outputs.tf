@@ -3,3 +3,8 @@ output "s3_website_domain" {
   description = "S3 website domain"
 }
 
+
+output "resume_url" {
+  value       = aws_route53_record.resume_url.fqdn
+  description = "Resume Project URL"
+}

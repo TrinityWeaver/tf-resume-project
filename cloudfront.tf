@@ -9,7 +9,9 @@ data "aws_ssm_parameter" "aws_referer" {
 
 
 resource "aws_cloudfront_distribution" "s3_distribution_resume_project" {
-  provider = aws.region-master
+  provider   = aws.region-master
+  web_acl_id = aws_wafv2_web_acl.resume_web_acl.arn
+
 
   origin {
     domain_name = aws_s3_bucket.resume_bucket.website_endpoint

@@ -57,7 +57,8 @@ resource "aws_s3_bucket_ownership_controls" "disable_acls" {
 
 
 
-data "aws_iam_policy_document" "resource_policy_to_allow_only_from_cf" {
+
+data "aws_iam_policy_document" "resource_policy_to_allow_only_from_cf_and_push_from_git" {
   provider = aws.region-master
   statement {
     sid = "Allow get requests originating from cloudfront"
@@ -81,11 +82,29 @@ data "aws_iam_policy_document" "resource_policy_to_allow_only_from_cf" {
     }
   }
 
+  statement {
+    sid = "Allow github user to push to the bucket"
+    principals {
+      type        = "AWS"
+      identifiers = [aws_iam_user.s3_github_actions.arn]
+    }
+    effect = "Allow"
+    actions = [
+      "s3:*",
+    ]
+
+    resources = [
+      "${aws_s3_bucket.resume_bucket.arn}/*",
+    ]
+  }
+
 }
 
 
 resource "aws_s3_bucket_policy" "allow_access_from_cf" {
   provider = aws.region-master
   bucket   = aws_s3_bucket.resume_bucket.id
-  policy   = data.aws_iam_policy_document.resource_policy_to_allow_only_from_cf.json
+  policy   = data.aws_iam_policy_document.resource_policy_to_allow_only_from_cf_and_push_from_git.json
 }
+
+
