@@ -15,3 +15,7 @@ variable "profile" {
 }
 
 
+variable "websites-name" {
+  type    = string
+  default = "www"
+}
