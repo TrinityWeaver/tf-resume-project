@@ -35,7 +35,7 @@ resource "aws_cloudfront_distribution" "s3_distribution_resume_project" {
   }
 
 
-  aliases = ["www.sebastianmarynicz.co.uk"]
+  aliases = ["www.sebastianmarynicz.co.uk", "sebastianmarynicz.co.uk"]
 
   enabled             = true
   is_ipv6_enabled     = true
@@ -85,7 +85,6 @@ resource "aws_cloudfront_distribution" "s3_distribution_resume_project" {
   }
 
   viewer_certificate {
-    #cloudfront_default_certificate = true
     acm_certificate_arn      = data.aws_acm_certificate.amazon_issued.arn
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.2_2021"

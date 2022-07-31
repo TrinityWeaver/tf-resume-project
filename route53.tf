@@ -19,7 +19,7 @@ data "aws_acm_certificate" "amazon_issued" {
 # Allias for portal.it-ops-zava.co.uk
 
 
-resource "aws_route53_record" "resume_url" {
+resource "aws_route53_record" "resume_url_www" {
   provider = aws.region-master
   zone_id  = data.aws_route53_zone.hosted_zone.zone_id
   name     = join(".", [var.websites-name, data.aws_route53_zone.hosted_zone.name])
@@ -30,3 +30,20 @@ resource "aws_route53_record" "resume_url" {
     evaluate_target_health = false
   }
 }
+
+
+
+
+resource "aws_route53_record" "resume_url_redirect_www" {
+  provider = aws.region-master
+  zone_id  = data.aws_route53_zone.hosted_zone.zone_id
+  name     = data.aws_route53_zone.hosted_zone.name
+  type     = "A"
+  alias {
+    name                   = aws_route53_record.resume_url_www.fqdn
+    zone_id                = data.aws_route53_zone.hosted_zone.zone_id
+    evaluate_target_health = false
+  }
+}
+
+
