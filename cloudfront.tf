@@ -80,7 +80,8 @@ resource "aws_cloudfront_distribution" "s3_distribution_resume_project" {
 
   restrictions {
     geo_restriction {
-      restriction_type = "none"
+      restriction_type = "blacklist"
+      locations = ["RU", "CN", "TR", "BR","BD","PK", "IN", "NP","RO","AF","VN","SG","NG"]
     }
   }
 
