@@ -108,3 +108,103 @@ resource "aws_s3_bucket_policy" "allow_access_from_cf" {
 }
 
 
+
+
+# S3 for SesForwarder Lambda Function
+
+
+resource "aws_s3_bucket" "SesForwarder" {
+  provider      = aws.region-ire
+  bucket        = "sebastian-ses-forwarder-lambda-ire"
+  force_destroy = true
+}
+
+
+
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "SesForwarder_encryption" {
+  provider = aws.region-ire
+  bucket   = aws_s3_bucket.SesForwarder.bucket
+
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "AES256"
+    }
+  }
+}
+
+resource "aws_s3_bucket_ownership_controls" "SesForwarder_disable_acls" {
+  provider = aws.region-ire
+  bucket   = aws_s3_bucket.SesForwarder.id
+
+  rule {
+    object_ownership = "BucketOwnerEnforced"
+  }
+}
+
+
+
+data "aws_ssm_parameter" "aws_account_id" {
+  provider = aws.region-master
+  name     = "/resume/aws/account"
+}
+
+
+
+
+data "aws_iam_policy_document" "allow_ses_bucket_policy" {
+  provider = aws.region-ire
+  statement {
+    sid = "Allow PutObject requests from SES"
+    principals {
+      type        = "Service"
+      identifiers = ["ses.amazonaws.com"]
+    }
+    effect = "Allow"
+    actions = [
+      "s3:PutObject"
+    ]
+
+    resources = [
+      "${aws_s3_bucket.SesForwarder.arn}/*",
+    ]
+    condition {
+      test     = "StringLike"
+      values   = [data.aws_ssm_parameter.aws_account_id.value]
+      variable = "aws:Referer"
+    }
+  }
+
+}
+
+
+resource "aws_s3_bucket_policy" "allow_SES_bucket_attachment" {
+  provider = aws.region-ire
+  bucket   = aws_s3_bucket.SesForwarder.id
+  policy   = data.aws_iam_policy_document.allow_ses_bucket_policy.json
+}
+
+
+
+resource "aws_s3_bucket_lifecycle_configuration" "bucket_delete_old_mails" {
+  provider = aws.region-ire
+  bucket   = aws_s3_bucket.SesForwarder.bucket
+
+  rule {
+    id = "mails"
+
+    expiration {
+      days = 90
+    }
+
+
+    filter {
+      and {
+        prefix = "mails/"
+
+      }
+    }
+
+    status = "Enabled"
+  }
+}

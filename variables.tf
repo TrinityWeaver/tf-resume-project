@@ -8,6 +8,12 @@ variable "region-virginia" {
   default = "us-east-1"
 }
 
+variable "region-ire" {
+  type    = string
+  default = "eu-west-1"
+}
+
+
 
 variable "profile" {
   type    = string
@@ -18,4 +24,25 @@ variable "profile" {
 variable "websites-name" {
   type    = string
   default = "www"
+}
+
+variable "info_email" {
+  type    = string
+  default = "info@sebastianmarynicz.co.uk"
+}
+
+variable "lambda_role_SES_Forwarder" {
+  type    = string
+  default = "SesForwarder-dev-eu-west-1-lambdaRole"
+}
+
+
+variable "recipient_contact_SES_Forwarder" {
+  type    = string
+  default = "contact@sebastianmarynicz.co.uk"
+}
+
+variable "recipient_powershell_SES_Forwarder" {
+  type    = string
+  default = "powershell-is-trash@sebastianmarynicz.co.uk"
 }

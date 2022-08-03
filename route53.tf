@@ -46,4 +46,16 @@ resource "aws_route53_record" "resume_url_redirect_www" {
   }
 }
 
+# MX Record for SES to be able to hit from outside
 
+
+resource "aws_route53_record" "MX_for_SES" {
+  provider = aws.region-master
+  zone_id  = data.aws_route53_zone.hosted_zone.zone_id
+  name     = data.aws_route53_zone.hosted_zone.name
+  type     = "MX"
+  ttl      = 300
+  records = [
+    "10 inbound-smtp.eu-west-1.amazonaws.com.",
+  ]
+}
