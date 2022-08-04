@@ -193,17 +193,18 @@ resource "aws_s3_bucket_lifecycle_configuration" "bucket_delete_old_mails" {
   rule {
     id = "mails"
 
+    filter {
+      prefix = "mails/"
+    }
+
     expiration {
       days = 90
     }
 
-
-    filter {
-      and {
-        prefix = "mails/"
-
-      }
+    abort_incomplete_multipart_upload {
+      days_after_initiation = 90
     }
+
 
     status = "Enabled"
   }

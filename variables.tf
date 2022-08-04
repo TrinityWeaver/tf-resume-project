@@ -46,3 +46,9 @@ variable "recipient_powershell_SES_Forwarder" {
   type    = string
   default = "powershell-is-trash@sebastianmarynicz.co.uk"
 }
+
+variable "recipient_admin_SES_Forwarder_ire" {
+  type    = string
+  default = "admin@sebastianmarynicz.co.uk"
+
+}
