@@ -105,19 +105,19 @@ resource "aws_wafv2_web_acl" "resume_web_acl" {
 
         excluded_rule {
           name = "CategorySocialMedia"
-        }        
+        }
 
         excluded_rule {
           name = "CategorySeo"
-        }        
+        }
 
         excluded_rule {
           name = "CategorySearchEngine"
-        }        
+        }
 
         excluded_rule {
           name = "CategoryAdvertising"
-        }        
+        }
 
 
       }

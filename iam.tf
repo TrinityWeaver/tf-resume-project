@@ -16,6 +16,37 @@ data "aws_iam_policy" "AmazonS3FullAccess" {
 }
 
 
+resource "aws_iam_policy" "allow_git_invalidate_cache" {
+  name        = "CustomAllowGitInvalidateCache"
+  path        = "/"
+  description = "Policy to allow to git user to invalidate cache"
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "cloudfront:CreateInvalidation",
+          "cloudfront:GetInvalidation",
+          "cloudfront:ListInvalidations"
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  })
+}
+
+resource "aws_iam_user_policy_attachment" "cache_inv_attach" {
+  provider   = aws.region-master
+  user       = aws_iam_user.s3_github_actions.name
+  policy_arn = aws_iam_policy.allow_git_invalidate_cache.arn
+}
+
+
+
 resource "aws_iam_user_policy_attachment" "test-attach" {
   provider   = aws.region-master
   user       = aws_iam_user.s3_github_actions.name
