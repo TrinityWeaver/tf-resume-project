@@ -17,7 +17,9 @@ jobs:
         tf_version=$TERRAFORM_VERSION
         wget https://releases.hashicorp.com/terraform/1.2.8/terraform_1.2.8_darwin_amd64.zip
         unzip terraform_"$tf_version"_darwin_amd64.zip
+        sudo ls -la
         sudo mv terraform /usr/local/bin/
+        sudo ls -la
     - name: Verify Terraform version
       run: /usr/local/bin/terraform --version
 
