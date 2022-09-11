@@ -8,10 +8,6 @@ resource "aws_iam_user" "s3_github_actions" {
   force_destroy = true
 }
 
-resource "aws_iam_access_key" "github_actions_access_key" {
-  provider = aws.region-master
-  user     = aws_iam_user.s3_github_actions.name
-}
 
 
 data "aws_iam_policy" "AmazonS3FullAccess" {

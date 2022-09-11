@@ -17,7 +17,7 @@ variable "region-ire" {
 
 variable "profile" {
   type    = string
-  default = "private-sebastian"
+  default = "tf-resume"
 }
 
 
