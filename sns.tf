@@ -63,5 +63,10 @@ resource "aws_sns_topic" "SES_Delivery" {
 
 
 
+resource "aws_sns_topic" "test" {
+  provider     = aws.region-ire
+  name         = "test"
+  display_name = "test"
+}
 
 
