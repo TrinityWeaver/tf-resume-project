@@ -17,6 +17,7 @@ data "aws_iam_policy" "AmazonS3FullAccess" {
 
 
 resource "aws_iam_policy" "allow_git_invalidate_cache" {
+  provider    = aws.region-master
   name        = "CustomAllowGitInvalidateCache"
   path        = "/"
   description = "Policy to allow to git user to invalidate cache"
@@ -33,7 +34,7 @@ resource "aws_iam_policy" "allow_git_invalidate_cache" {
           "cloudfront:ListInvalidations"
         ]
         Effect   = "Allow"
-        Resource = "*"
+        Resource = [aws_cloudfront_distribution.s3_distribution_resume_project.arn]
       },
     ]
   })
