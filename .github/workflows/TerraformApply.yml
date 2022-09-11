@@ -21,7 +21,7 @@ jobs:
         sudo mv terraform /usr/local/bin/
         sudo ls -la /usr/local/bin/
     - name: Verify Terraform version
-      run: /usr/local/bin/terraform --version
+      run: sudo /usr/local/bin/terraform --version
 
     - name: Terraform init
       env:
