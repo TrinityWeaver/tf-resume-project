@@ -19,7 +19,7 @@ jobs:
         unzip terraform_"$tf_version"_darwin_amd64.zip
         sudo ls -la
         sudo mv terraform /usr/local/bin/
-        sudo ls -la
+        sudo ls -la /usr/local/bin/
     - name: Verify Terraform version
       run: /usr/local/bin/terraform --version
 
