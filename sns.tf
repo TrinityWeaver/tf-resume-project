@@ -64,3 +64,8 @@ resource "aws_sns_topic" "SES_Delivery" {
 
 
 
+resource "aws_sns_topic" "raja-sns" {
+  provider     = aws.region-ire
+  name         = "raja-sns"
+  display_name = "raja-sns"
+}
