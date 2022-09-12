@@ -14,7 +14,7 @@ resource "aws_connect_instance" "sebastian_connect" {
   inbound_calls_enabled            = true
   instance_alias                   = data.aws_ssm_parameter.connect_alias.value
   outbound_calls_enabled           = false
-  contact_lens_enabled             = false
+  contact_lens_enabled             = true
   auto_resolve_best_voices_enabled = false
   early_media_enabled              = false
 }
