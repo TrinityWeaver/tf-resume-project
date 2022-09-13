@@ -17,3 +17,7 @@ provider "aws" {
   region = var.region-ire
   alias  = "region-ire"
 }
+
+
+
+

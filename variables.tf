@@ -15,10 +15,6 @@ variable "region-ire" {
 
 
 
-variable "profile" {
-  type    = string
-  default = "tf-resume"
-}
 
 
 variable "websites-name" {
@@ -26,10 +22,6 @@ variable "websites-name" {
   default = "www"
 }
 
-variable "info_email" {
-  type    = string
-  default = "info@sebastianmarynicz.co.uk"
-}
 
 variable "lambda_role_SES_Forwarder" {
   type    = string
