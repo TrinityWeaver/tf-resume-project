@@ -36,36 +36,6 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: terraform plan
 
-  tflint-check:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-
-    steps:
-    - uses: actions/checkout@v3
-      name: Checkout source code
-
-    - uses: actions/cache@v2
-      name: Cache plugin dir
-      with:
-        path: ./
-        key: ${{ matrix.os }}-tflint-${{ hashFiles('.tflint.hcl') }}
-
-    - uses: terraform-linters/setup-tflint@v2
-      name: Setup TFLint
-      with:
-        tflint_version: v0.40.0
-
-    - name: Show version
-      run: tflint --version
-
-    - name: Init TFLint
-      run: tflint --init
-
-    - name: Run TFLint
-      run: tflint 
     
 
   deploy-prod:
