@@ -120,11 +120,6 @@ resource "aws_s3_bucket" "SesForwarder" {
 }
 
 
-resource "aws_s3_bucket_acl" "SesForwarder_private" {
-  provider = aws.region-ire
-  bucket   = aws_s3_bucket.SesForwarder.id
-  acl      = "private"
-}
 
 
 
