@@ -2,9 +2,10 @@
 
 
 resource "aws_sns_topic" "cert_expiring" {
-  provider     = aws.region-virginia
-  name         = "Resume-TLS-Cert-Expiring"
-  display_name = "Resume TLS Certificate Expiring"
+  provider          = aws.region-virginia
+  name              = "Resume-TLS-Cert-Expiring"
+  display_name      = "Resume TLS Certificate Expiring"
+  kms_master_key_id = "alias/aws/sns"
 }
 
 
@@ -27,9 +28,10 @@ resource "aws_sns_topic_subscription" "subscription" {
 
 
 resource "aws_sns_topic" "SES_bounce" {
-  provider     = aws.region-ire
-  name         = "SES-Bounce"
-  display_name = "SES-Bounce"
+  provider          = aws.region-ire
+  name              = "SES-Bounce"
+  display_name      = "SES-Bounce"
+  kms_master_key_id = "alias/aws/sns"
 }
 
 resource "aws_sns_topic_subscription" "subscription_bounce" {
@@ -41,9 +43,11 @@ resource "aws_sns_topic_subscription" "subscription_bounce" {
 
 
 resource "aws_sns_topic" "SES_Complaint" {
-  provider     = aws.region-ire
-  name         = "SES-Complaint"
-  display_name = "SES-Complaint"
+  provider          = aws.region-ire
+  name              = "SES-Complaint"
+  display_name      = "SES-Complaint"
+  kms_master_key_id = "alias/aws/sns"
+
 }
 
 resource "aws_sns_topic_subscription" "subscription_complaint" {
@@ -55,9 +59,11 @@ resource "aws_sns_topic_subscription" "subscription_complaint" {
 }
 
 resource "aws_sns_topic" "SES_Delivery" {
-  provider     = aws.region-ire
-  name         = "SES-Delivery"
-  display_name = "SES-Delivery"
+  provider          = aws.region-ire
+  name              = "SES-Delivery"
+  display_name      = "SES-Delivery"
+  kms_master_key_id = "alias/aws/sns"
+
 }
 
 
