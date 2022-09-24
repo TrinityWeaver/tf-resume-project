@@ -19,6 +19,8 @@ For web application firewall i use AWS WAF, which is a web application firewall 
 
 
 
+## React Frontend
+
 The frontend consists React JavaScript. Link to project [here](https://github.com/TrinityWeaver/resume-project).
 
 
