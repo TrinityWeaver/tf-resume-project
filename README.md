@@ -24,4 +24,4 @@ The frontend consists React JavaScript. Link to project [here](https://github.co
 
 ## Build pipeline
 
-This project is built using [GitHub Actions](https://github.com/TrinityWeaver/tf-resume-project/actions), which use TFLint,  TFSec ( Security Code Scanning), plans and applies the latest Terraform infrastructure.
+This project is built using [GitHub Actions](https://github.com/TrinityWeaver/tf-resume-project/actions), which use TFLint,  TFSec ( Security Code Scanning ), plans and applies the latest Terraform infrastructure.
