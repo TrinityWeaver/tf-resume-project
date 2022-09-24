@@ -2,10 +2,9 @@
 
 
 resource "aws_sns_topic" "cert_expiring" {
-  provider          = aws.region-virginia
-  name              = "Resume-TLS-Cert-Expiring"
-  display_name      = "Resume TLS Certificate Expiring"
-  kms_master_key_id = "alias/aws/sns"
+  provider     = aws.region-virginia
+  name         = "Resume-TLS-Cert-Expiring"
+  display_name = "Resume TLS Certificate Expiring"
 }
 
 
