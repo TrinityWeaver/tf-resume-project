@@ -7,7 +7,7 @@ This is a project making use of AWS and Terraform to host my Resume at [www.seba
 ## Application architecture
 
 
-Architecture Diagram - TBA
+![Diagram](assets/resume-diagram.svg)
 
 
 This project is basically a static website hosted on S3, Configured CDN (Content Delivery Network) with TLS on AWS CloudFront.
