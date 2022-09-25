@@ -51,7 +51,7 @@ resource "aws_cloudfront_distribution" "s3_distribution_resume_project" {
 
     origin_request_policy_id   = data.aws_cloudfront_origin_request_policy.CORS_S3Origin.id
     cache_policy_id            = data.aws_cloudfront_cache_policy.CachingOptimized.id
-    viewer_protocol_policy     = "redirect-to-https"
+    viewer_protocol_policy     = "allow-all"
     response_headers_policy_id = data.aws_cloudfront_response_headers_policy.security_headers.id
 
   }
