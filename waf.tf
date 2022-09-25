@@ -89,48 +89,6 @@ resource "aws_wafv2_web_acl" "resume_web_acl" {
     }
   }
 
-  rule {
-    name     = "AWSManagedRulesBotControlRuleSet"
-    priority = 3
-
-
-    override_action {
-      none {}
-    }
-
-    statement {
-      managed_rule_group_statement {
-        name        = "AWSManagedRulesBotControlRuleSet"
-        vendor_name = "AWS"
-
-        excluded_rule {
-          name = "CategorySocialMedia"
-        }
-
-        excluded_rule {
-          name = "CategorySeo"
-        }
-
-        excluded_rule {
-          name = "CategorySearchEngine"
-        }
-
-        excluded_rule {
-          name = "CategoryAdvertising"
-        }
-
-
-      }
-    }
-
-    visibility_config {
-      cloudwatch_metrics_enabled = true
-      metric_name                = "resume_AWSManagedRulesBotControlRuleSet"
-      sampled_requests_enabled   = true
-    }
-  }
-
-
 
   visibility_config {
     cloudwatch_metrics_enabled = true
