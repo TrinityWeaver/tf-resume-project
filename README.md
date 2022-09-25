@@ -1,5 +1,6 @@
 # Sebastian Marynicz Personal Portfolio 
 # Infrastructure as Code with Terraform
+<br />
 
 
 This is a project making use of AWS and Terraform to host my Resume at [www.sebastianmarynicz.co.uk](https://www.sebastianmarynicz.co.uk/)
@@ -7,8 +8,13 @@ This is a project making use of AWS and Terraform to host my Resume at [www.seba
 
 ![Preview](assets/preview.png)
 
+<br />
+<br />
+
 
 ## Application architecture
+<br />
+<br />
 
 
 ![Diagram](assets/resume-diagram.svg)
@@ -29,10 +35,12 @@ For web application firewall i use AWS WAF, which is a web application firewall 
 
 
 ## React Frontend
+<br />
 
 The frontend consists React JavaScript. Link to project [here](https://github.com/TrinityWeaver/resume-project).
 
 
 ## Build pipeline
+<br />
 
 This project is built using [GitHub Actions](https://github.com/TrinityWeaver/tf-resume-project/actions), which use TFLint,  TFSec ( Security Code Scanning ), plans and applies the latest Terraform infrastructure.
